@@ -103,10 +103,10 @@ class MailCampaigner extends Command {
 	protected function getOptions()
 	{
 		return [
-			['subject', 'sub', InputOption::VALUE_REQUIRED, 'subject of mail', 'Hello'],
+			['subject', 't', InputOption::VALUE_REQUIRED, 'subject of mail', 'Hello'],
 			['sender_address', 'f', InputOption::VALUE_REQUIRED, 'Address of sender'],
 			['sender_name', 'name', InputOption::VALUE_REQUIRED, 'Name of sender'],
-			['view', 'vi', InputOption::VALUE_REQUIRED, 'View to use'],
+			['view', 'b', InputOption::VALUE_REQUIRED, 'View to use'],
 			['start', 's', InputOption::VALUE_OPTIONAL, 'number to start from.', 0],
 			['end', 'e', InputOption::VALUE_OPTIONAL, 'number to end with', 500],			
 		];
