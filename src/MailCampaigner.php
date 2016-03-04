@@ -60,16 +60,26 @@ class MailCampaigner extends Command {
 				break;
 			}
 			print_r($num.',');
-			$this->sendMail(trim($mails[$num]));
+			$this->sendMail($view,$subject,trim($mails[$num]),$senderAddr,$senderName);
 		}
 		$this->info("\n All done");
 	}
-	public function sendMail($email)
+	/**
+	 * Use to send mails to each emails
+	 * 
+	 * @var string $view template to use
+	 * @var string $subject template to use
+	 * @var string $receiverEmail receiver's email address
+	 * @var string $senderEmail sender's email address
+	 * @var string $senderName sender's name
+	 * 
+	 */
+	public function sendMail($view,$subject,$receiverEmail,$senderEmail,$senderName="null")
 	{
 		\URL::forceRootUrl(config('app.url'));
-		\Mail::send($view, [], function ($m) use ($email,$subject,$senderAddr) {
+		\Mail::send($view, [], function ($m) use ($email,$subject,$senderEmail) {
 			$m->to($email)->subject($subject);
-			$m->from($senderAddr, $senderName);
+			$m->from($senderEmail, $senderName);
 		});
 	}
 
