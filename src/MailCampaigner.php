@@ -96,7 +96,7 @@ class MailCampaigner extends Command {
 			['subject', 'sub', InputOption::VALUE_REQUIRED, 'subject of mail', 'Hello'],
 			['from_address', 'f', InputOption::VALUE_REQUIRED, 'Address of sender', 'Hello'],
 			['from_name', 'n', InputOption::VALUE_REQUIRED, 'Name of sender'],
-			['view', 'v', InputOption::VALUE_REQUIRED, 'View to use'],
+			['view', 'vi', InputOption::VALUE_REQUIRED, 'View to use'],
 			['start', 's', InputOption::VALUE_OPTIONAL, 'number to start from.', 0],
 			['end', 'e', InputOption::VALUE_OPTIONAL, 'number to end with', 500],			
 		];
