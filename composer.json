@@ -19,5 +19,5 @@
           "Maxdeviper\\EmailMarketer\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
