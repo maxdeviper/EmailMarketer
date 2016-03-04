@@ -1,4 +1,6 @@
-<?php namespace App\Console\Commands;
+<?php
+
+namespace Maxdeviper\EmailMarketer;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
