@@ -78,7 +78,7 @@ class MailCampaigner extends Command {
 	{
 		\URL::forceRootUrl(config('app.url'));
 		\Mail::send($view, [], function ($m) use ($email,$subject,$senderEmail) {
-			$m->to($email)->subject($subject);
+			$m->to($receiverEmail)->subject($subject);
 			$m->from($senderEmail, $senderName);
 		});
 	}
