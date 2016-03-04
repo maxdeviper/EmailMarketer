@@ -1,6 +1,7 @@
 <?php 
 
 namespace Maxdeviper\EmailMarketer;
+use Maxdeviper\EmailMarketer\MailCampaigner;
 
 
 use Illuminate\Support\ServiceProvider;
@@ -26,7 +27,7 @@ class EmailMarketerServiceProvider extends ServiceProvider
     private function registerEmailCommandGenerator()
     {
         $this->app->singleton('command.mail.campaign', function ($app) {
-            return $app['Maxdeviper\EmailMarkerter\MailCampaigner'];
+            return $app[MailCampaigner::class];
         });
 
         $this->commands('command.mail.campaign');
