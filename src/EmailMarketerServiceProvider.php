@@ -1,5 +1,8 @@
 <?php 
 
+namespace Maxdeviper\EmailMarketer;
+
+
 use Illuminate\Support\ServiceProvider;
 
 /**
