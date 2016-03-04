@@ -1,0 +1,23 @@
+{
+    "name": "maxdeviper/email-marketer",
+    "description": "A Laravel artisan console app for sending emails to a list of people for e.g campaigns, newsletter",
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.0",
+        "illuminate/mail": "~5.0",
+        "league/csv": "^8.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "maxdeviper",
+            "email": "mxvmayaki@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "Maxdeviper\\EmailMarketer\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
