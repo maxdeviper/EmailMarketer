@@ -4,9 +4,10 @@ namespace Maxdeviper\EmailMarketer;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Mail\Mailer;
 use League\Csv\Reader;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class MailCampaigner extends Command {
 
@@ -24,16 +25,18 @@ class MailCampaigner extends Command {
 	 */
 	protected $description = 'send newsletter mail';
 	protected $file;
+	protected $mailer;
 
 	/**
 	 * Create a new command instance.
 	 * @param Filesystem $file
 	 */
-	public function __construct(Filesystem $file)
+	public function __construct(Filesystem $file,Mailer $mailer)
 	{
 
 		parent::__construct();
 		$this->file = $file;
+		$this->mailer=$mailer;
 	}
 
 	/**
@@ -77,7 +80,7 @@ class MailCampaigner extends Command {
 	public function sendMail($view,$subject,$receiverEmail,$senderEmail,$senderName="null")
 	{
 		\URL::forceRootUrl(config('app.url'));
-		\Mail::send($view, [], function ($m) use ($receiverEmail,$subject,$senderEmail,$senderName) {
+		$this->mailer->send($view, [], function ($m) use ($receiverEmail,$subject,$senderEmail,$senderName) {
 			$m->to($receiverEmail)->subject($subject);
 			$m->from($senderEmail, $senderName);
 		});
