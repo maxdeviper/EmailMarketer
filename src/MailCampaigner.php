@@ -63,7 +63,8 @@ class MailCampaigner extends Command {
 				break;
 			}
 			print_r($num.',');
-			$this->sendMail($view,$subject,trim($mails[$num]),$senderAddr,$senderName);
+			$name=isset($mails[$num][1])?trim($mails[$num][1]):null;
+			$this->sendMail($view,$subject,trim($mails[$num][0]),$senderAddr,$senderName,$name);
 		}
 		$this->info("\n All done");
 	}
@@ -77,13 +78,14 @@ class MailCampaigner extends Command {
 	 * @var string $senderName sender's name
 	 * 
 	 */
-	public function sendMail($view,$subject,$receiverEmail,$senderEmail,$senderName="null")
+	public function sendMail($view,$subject,$receiverEmail,$senderEmail,$senderName=null,$name=null)
 	{
 		\URL::forceRootUrl(config('app.url'));
-		$this->mailer->send($view, [], function ($m) use ($receiverEmail,$subject,$senderEmail,$senderName) {
+		$this->mailer->send($view, ['name'=>$name], function ($m) use ($receiverEmail,$subject,$senderEmail,$senderName) {
 			$m->to($receiverEmail)->subject($subject);
 			$m->from($senderEmail, $senderName);
 		});
+		sleep(5);
 	}
 
 	/**
@@ -123,8 +125,7 @@ class MailCampaigner extends Command {
 	{
 		$reader = Reader::createFromPath(storage_path($file),'r');
 		$reader->setOffset(1);
-		$result = $reader->fetchColumn(0);
-		$mails = iterator_to_array($result, false);
+		$result = $reader->fetchAll();
 ////		$mails=['vmayaki@techneeks.com.ng','vmeregini@techneeks.com.ng','nohadoma@techneeks.com.ng'];
 // 		$rawMails=file_get_contents(storage_path()."/".$file);
 		// $rawMails=preg_replace('/\s+|(<|>)/S', '', $rawMails);
