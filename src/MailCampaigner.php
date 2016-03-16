@@ -131,7 +131,7 @@ class MailCampaigner extends Command {
 		// $rawMails=preg_replace('/\s+|(<|>)/S', '', $rawMails);
 // 		$mails=explode("\n",trim(trim($rawMails)));
 // 		$mails=array_filter($mails);
-		return $mails;
+		return $result;
 	}
 
 }
