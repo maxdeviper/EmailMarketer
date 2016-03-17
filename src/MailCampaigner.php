@@ -3,6 +3,7 @@
 namespace Maxdeviper\EmailMarketer;
 
 use Illuminate\Console\Command;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Mail\Mailer;
 use League\Csv\Reader;
@@ -31,12 +32,13 @@ class MailCampaigner extends Command {
 	 * Create a new command instance.
 	 * @param Filesystem $file
 	 */
-	public function __construct(Filesystem $file,Mailer $mailer)
+	public function __construct(Filesystem $file,Mailer $mailer,UrlGenerator $urlhelper)
 	{
 
 		parent::__construct();
 		$this->file = $file;
 		$this->mailer=$mailer;
+		$this->urlhelper=$urlhelper;
 	}
 
 	/**
@@ -80,7 +82,7 @@ class MailCampaigner extends Command {
 	 */
 	public function sendMail($view,$subject,$receiverEmail,$senderEmail,$senderName=null,$name=null)
 	{
-		\URL::forceRootUrl(config('app.url'));
+		$urlhelper->forceRootUrl(config('app.url'));
 		$this->mailer->send($view, ['name'=>$name], function ($m) use ($receiverEmail,$subject,$senderEmail,$senderName) {
 			$m->to($receiverEmail)->subject($subject);
 			$m->from($senderEmail, $senderName);
