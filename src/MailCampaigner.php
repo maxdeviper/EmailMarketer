@@ -82,7 +82,7 @@ class MailCampaigner extends Command {
 	 */
 	public function sendMail($view,$subject,$receiverEmail,$senderEmail,$senderName=null,$name=null)
 	{
-		$urlhelper->forceRootUrl(config('app.url'));
+		$this->urlhelper->forceRootUrl(config('app.url'));
 		$this->mailer->send($view, ['name'=>$name], function ($m) use ($receiverEmail,$subject,$senderEmail,$senderName) {
 			$m->to($receiverEmail)->subject($subject);
 			$m->from($senderEmail, $senderName);
