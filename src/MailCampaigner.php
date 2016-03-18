@@ -125,7 +125,7 @@ class MailCampaigner extends Command {
 	 */
 	private function mailFromFile($file)
 	{
-		$reader = Reader::createFromPath(app_path($file),'r');
+		$reader = Reader::createFromPath(base_path($file),'r');
 		$reader->setOffset(1);
 		$result = $reader->fetchAll();
 ////		$mails=['vmayaki@techneeks.com.ng','vmeregini@techneeks.com.ng','nohadoma@techneeks.com.ng'];
